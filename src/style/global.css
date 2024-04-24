@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: sans-serif;
+}
+
+:root {
+  --primary: #BC5D2E;
+  --primary-transparent: #BC5D2E99;
+  --primary-light: #DE9151;
+  --primary-dark: #F34213;
+  --secondary: #BBB8B2;
+  --black: #2E2E3A;
+  --black-transparent: #2E2E3ACC;
+  --gray: #ccc
+}
+
+input, button, form {
+  width: 100%;
+}
+
+input {
+  outline: none;
+  background: rgba( 255, 255, 255, 0.35 );
+  border: none;
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  outline: none;
+  padding: 16px;
+}
+
+input::placeholder {
+  color: #333;
+}
+
+button {
+  background-color: var(--primary);
+  color: #FFF;
+  font-weight: 700;
+  border: 1px solid var(--primary);
+  cursor: pointer;
+  outline: none;
+  padding: 16px;
+}
+
+.alignCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.appContainer {
+  display: flex;
+  background: url('./../assets/meal3.png') center center;
+  background-size: cover;
+  height: calc(100vh - 60px);
+}
+
+@media(min-width: 900px){
+  input, button {
+   padding: 20px;
+  }
+
+  .appContainer {
+    height: calc(100vh - 80px);
+  }
+}
+
+.containerPages {
+  flex: 1;
+  padding: 16px;
+}
+
+.containerPages .circleButton {
+  bottom: 20px;
+  right: 20px;
+  position: absolute;
+}
+

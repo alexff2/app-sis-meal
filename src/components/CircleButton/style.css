@@ -1,0 +1,45 @@
+.circleButton {
+  border-radius: 50%;
+  position: relative;
+}
+
+.circleButton:hover {
+  box-shadow: 0px 1px 5px #555555cc;
+}
+
+.circleButton.small {
+  width: 40px;
+  height: 40px;
+}
+
+.circleButton.medium {
+  width: 55px;
+  height: 55px;
+}
+
+.circleButton.big {
+  width: 70px;
+  height: 70px;
+}
+
+.circleButton svg {
+  position: absolute;
+  right: 50%;
+  top: 50%;
+}
+
+.circleButton.small svg {
+  font-size: 12px;
+  margin-right: -6px;
+  margin-top: -6px;
+}
+.circleButton.medium svg {
+  font-size: 16px;
+  margin-right: -8px;
+  margin-top: -8px;
+}
+.circleButton.big svg {
+  font-size: 20px;
+  margin-right: -10px;
+  margin-top: -10px;
+}

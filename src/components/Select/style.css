@@ -1,0 +1,26 @@
+.selectContainer {
+  background: rgba( 255, 255, 255, 0.35 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  border-radius: 8px;
+  position: relative;
+  
+}
+
+.selectContainer select {
+  cursor: pointer;
+  appearance: none;
+  padding: 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #000;
+}
+
+.selectContainer .iconArrowSelect {
+  right: 20px;
+  top: 50%;
+  margin-top: -8px;
+  position: absolute;
+  z-index: -1;
+}

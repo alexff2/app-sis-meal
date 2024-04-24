@@ -1,0 +1,22 @@
+.itensMenu a {
+  text-decoration: none;
+}
+
+.menuItem {
+  width: 100%;
+  padding: 18px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  color: #FFF;
+}
+
+.menuItem:hover {
+  background-color: #FFF2;
+  cursor: pointer;
+}
+
+@media (min-width: 900px) {
+  .menuItem {
+    color: #000;
+  }
+}

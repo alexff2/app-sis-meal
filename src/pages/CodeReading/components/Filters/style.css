@@ -1,0 +1,9 @@
+.filterContainer form {
+  width: 100%;
+  margin: 30px;
+  max-width: 838px;
+}
+
+.filterContainer input {
+  margin-bottom: 20px;
+}

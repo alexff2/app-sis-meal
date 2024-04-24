@@ -1,0 +1,63 @@
+.overLowRegisterModal {
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 20px;
+}
+
+.overLowRegisterModal.open{
+  display: flex;
+}
+
+.overLowRegisterModal.open .registerModalContainer {
+  max-width: 600px;
+  z-index: 1001;
+}
+
+
+.registerModalContainer {
+  text-align: center;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.registerModalContainer header {
+  background-color: var(--black-transparent);
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  color: #FFF;
+  padding: 16px;
+  position: relative;
+}
+
+.registerModalContainer header svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  padding: 4px;
+  font-size: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.registerModalContainer header svg:hover {
+  box-shadow: 0px 0px 2px #FFF;
+}
+
+.registerModalContainer form {
+  background-color: #FFF6;
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.registerModalContainer form button {
+  background-color: var(--primary-transparent);
+  border: none;
+}
