@@ -1,6 +1,6 @@
 type FormProps = {
   children: React.ReactNode
-  onSubmit: () => void
+  onSubmit: () => Promise<void>
   id: string
 }
 
@@ -11,10 +11,14 @@ export function Form({ children, onSubmit, id }: FormProps){
     modalElement?.classList.remove('open')
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    onSubmit()
-    handleCloseModalRegisterEmployee()
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault()
+      await onSubmit()
+      handleCloseModalRegisterEmployee()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

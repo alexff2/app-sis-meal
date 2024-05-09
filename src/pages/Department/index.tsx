@@ -1,15 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CircleButton, TableSearch } from '../../components'
 import { ModalRegisterDepartment } from './Components'
+import { api } from '../../services'
 
-type DepartmentPropsSate = {
-  id: string
-  code: number
+export type DepartmentPropsState = {
+  id: number
   name: string
 }
 
 export function Department() {
-  const [ department ] = useState<DepartmentPropsSate[] | null>(null)
+  const [ departments, setDepartments ] = useState<DepartmentPropsState[] | []>([])
+
+  useEffect(() => {
+    api.get('/department').then(({ data }) => setDepartments(data))
+  }, [])
 
   const handleOpenModalRegisterDepartment = () => {
     const element = document.getElementById('modalRegisterDepartmentId')
@@ -30,9 +34,9 @@ export function Department() {
 
         <TableSearch.Body>
           <TableSearch.Table headers={['Código', 'Nome']}>
-            {department !== null && department.map( row => (
+            {departments.length > 0 && departments.map( row => (
               <tr key={row.id}>
-                <td style={{width: '16%'}}>{row.code}</td>
+                <td style={{width: '16%'}}>{row.id}</td>
                 <td>{row.name}</td>
               </tr>
             ))}
@@ -42,7 +46,7 @@ export function Department() {
 
       <CircleButton onClick={handleOpenModalRegisterDepartment}/>
 
-      <ModalRegisterDepartment/>
+      <ModalRegisterDepartment setDepartments={setDepartments}/>
     </div>
   )
 }

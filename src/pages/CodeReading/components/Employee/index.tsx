@@ -1,6 +1,11 @@
+import { EmployeeProps } from '../..'
 import './style.css'
 
-export function Employee(){
+type Props = {
+  employee: EmployeeProps | null
+}
+
+export function Employee({ employee }: Props){
   return(
     <div className="cardEmployee">
       <div className="cardImg"></div>
@@ -8,9 +13,9 @@ export function Employee(){
         <div className="img"></div>
       </div>
       <div className="descriptions">
-        <p><strong>Código: </strong> 10001</p>
-        <p><strong>Nome: </strong> Funcionário 1</p>
-        <p><strong>Departamento: </strong> Departamento 1</p>
+        <p><strong>Código: </strong>{employee?.id}</p>
+        <p><strong>Nome: </strong>{employee?.name}</p>
+        <p><strong>Departamento: </strong>{employee?.department}</p>
       </div>
     </div>
   )

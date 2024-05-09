@@ -8,7 +8,7 @@ export function Login(){
   const{ widthWindow } = useWindowSize()
   const { login } = useAuthenticate()
 
-  const [ userName, setUserName ] = useState('')
+  const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const [ app, setApp ] = useState<'register'|'codeReading'>('register')
 
@@ -18,10 +18,9 @@ export function Login(){
     try {
       e.preventDefault()
 
-      login({userName, password, app})
+      login({email, password, app})
 
     } catch (error) {
-      console.log('chegou')
       console.log(error)
       
       alert('Erro ao logar, entre em contato com administrador.')
@@ -52,7 +51,7 @@ export function Login(){
               </>
             }
           </Select>
-          <input type="text" placeholder="Usuário" onChange={e => setUserName(e.target.value)}/>
+          <input type="text" placeholder="E-mail" onChange={e => setEmail(e.target.value)}/>
           <input type="password" placeholder="Senha" onChange={e => setPassword(e.target.value)} />
         </fieldset>
         <button type="submit">Entrar</button>

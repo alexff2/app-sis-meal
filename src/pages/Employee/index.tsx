@@ -1,31 +1,57 @@
 import { useState, useEffect } from 'react'
 import { CircleButton, TableSearch, Select } from '../../components'
 import { ModalRegisterEmployee } from './Component'
+import { api } from '../../services'
 
 type EmployeePropsSate = {
-  id: string
-  code: number
+  id: number
   name: string
-  department: string
+  departmentId: number
 }
 
-type DepartmentPropsSate = {
-  id: string
+export type DepartmentPropsSate = {
+  id: number
   name: string
 }
 
 export function Employee(){
   const [ searchType, setSearchType ] = useState('department')
-  const [ employee ] = useState<EmployeePropsSate[] | null>(null)
-  const [ department, setDepartment ] = useState<DepartmentPropsSate[] | null>(null)
+  const [ search, setSearch ] = useState('')
+  const [ employees, setEmployees ] = useState<EmployeePropsSate[]>([])
+  const [ departments, setDepartments ] = useState<DepartmentPropsSate[]>([])
 
   useEffect(() => {
-    setDepartment([
-      { id: '1', name: 'Geral' },
-      { id: '2', name: 'Produção' },
-      { id: '3', name: 'Administrativo' },
-    ])
+    api.get('/department').then(({ data }) => setDepartments(data))
   }, [])
+
+  const handleChangeTypeSearch = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearchType(e.target.value)
+  }
+
+  const searchEmployee = async () => {
+    if (search==='') {
+      alert('Digite algo na pesquisa!')
+      return
+    }
+
+    try {
+      const { data } = await api.get<EmployeePropsSate[]>('employee', {
+        params: {
+          type: searchType,
+          search
+        }
+      })
+  
+      setEmployees(data)
+
+      if (data.length === 0) {
+        alert('Nenhum funcionário encontrado!')
+      }
+    } catch (error) {
+      console.log(error)
+      alert('Error, entre em contato com ADM!')
+    }
+  }
 
   const handleOpenModalRegisterEmployee = () => {
     const element = document.getElementById('modalRegisterEmployeeId')
@@ -37,7 +63,7 @@ export function Employee(){
     <div className='containerPages'>
       <TableSearch.Root>
         <TableSearch.Header title='Cadastro de funcionários'>
-          <Select value={searchType} onChange={e => setSearchType(e.target.value)}>
+          <Select value={searchType} onChange={handleChangeTypeSearch}>
             <option value='department' >Departamento</option>
             <option value='name'>Nome</option>
             <option value='code'>Código</option>
@@ -45,26 +71,41 @@ export function Employee(){
 
           <div className="search">
             { searchType === 'department'
-              ? <Select>
-                {
-                  department?.map( value => (
-                    <option key={value.id}>{value.name}</option>
-                  ))
-                }
-              </Select>
-              :<input type='text' placeholder='pesquisar...'/>}
+              ? <Select
+                  onChange={e => setSearch(e.target.value)}
+                >
+                  <option value=''>Selecione um departamento</option>
+                  {
+                    departments?.map( value => (
+                      <option
+                        key={value.id}
+                        value={value.id}
+                      >{value.name}</option>
+                    ))
+                  }
+                </Select>
+              : <input
+                  type={searchType === 'code' ? 'number': 'text'}
+                  placeholder='pesquisar...'
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && searchEmployee()}
+                />
+            }
           </div>
 
-          <button className='buttonSearch'>Pesquisar</button>
+          <button className='buttonSearch' onClick={searchEmployee}>Pesquisar</button>
         </TableSearch.Header>
 
         <TableSearch.Body>
           <TableSearch.Table headers={['Código', 'Nome', 'Departamento']}>
-            {employee !== null && employee.map( row => (
+            {employees.length > 0 && employees.map( row => (
               <tr key={row.id}>
-                <td style={{width: '16%'}}>{row.code}</td>
+                <td style={{width: '16%'}}>{row.id}</td>
                 <td>{row.name}</td>
-                <td style={{width: '26%'}}>{row.department}</td>
+                <td style={{width: '26%'}}>
+                  {departments.find(dep => dep.id === row.departmentId)?.name}
+                </td>
               </tr>
             ))}
           </TableSearch.Table>
@@ -73,7 +114,7 @@ export function Employee(){
 
       <CircleButton onClick={handleOpenModalRegisterEmployee}/>
 
-      <ModalRegisterEmployee />
+      <ModalRegisterEmployee departments={departments}/>
     </div>
   )
 }

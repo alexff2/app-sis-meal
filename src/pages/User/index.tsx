@@ -1,15 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CircleButton, TableSearch } from '../../components'
 import { ModalRegisterUser } from './Components'
+import { api } from '../../services'
 
-type UserPropsSate = {
+export type UserPropsSate = {
   id: string
   name: string
   email: string
 }
 
 export function User() {
-  const [ user ] = useState<UserPropsSate[] | null>(null)
+  const [ search, setSearch ] = useState('')
+  const [ users, setUsers ] = useState<UserPropsSate[]>([])
+
+  useEffect(() => {
+    api.get('user')
+      .then(({ data }) => setUsers(data))
+  }, [])
 
   const handleOpenModalRegisterUser = () => {
     const element = document.getElementById('modalRegisterUserId')
@@ -17,24 +24,28 @@ export function User() {
     element?.classList.add('open')
   }
 
+  const userFilter = users.filter(user => user.name.includes(search))
+
   return (
     <div className='containerPages'>
       <TableSearch.Root>
         <TableSearch.Header title='Usuários'>
           <div className='search'>
-            <input type='text' />
+            <input
+              type='text'
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder='Pesquisar por nome'
+            />
           </div>
-
-          <button className='buttonSearch'>Pesquisar</button>
         </TableSearch.Header>
 
         <TableSearch.Body>
-          <TableSearch.Table headers={['Código', 'Nome', 'Email']}>
-            {user !== null && user.map( row => (
-              <tr key={row.id}>
-                <td style={{width: '16%'}}>{row.id}</td>
-                <td>{row.name}</td>
-                <td>{row.email}</td>
+          <TableSearch.Table headers={['Nome', 'Email']}>
+            {userFilter.map( user => (
+              <tr key={user.id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
               </tr>
             ))}
           </TableSearch.Table>
@@ -43,7 +54,7 @@ export function User() {
 
       <CircleButton onClick={handleOpenModalRegisterUser}/>
 
-      <ModalRegisterUser/>
+      <ModalRegisterUser setUsers={setUsers}/>
     </div>
   )
 }
