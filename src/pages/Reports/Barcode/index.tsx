@@ -50,6 +50,7 @@ export function Barcode(){
   return (
     <div className='containerPages'>
       <div className='headerPrint'>
+        <button className='printEmployee' onClick={() => window.print()}>Imprimir</button>
         <TableSearch.Root>
           <TableSearch.Header title='Cadastro de funcionários'>
             <Select value={searchType} onChange={handleChangeTypeSearch}>
@@ -91,7 +92,7 @@ export function Barcode(){
           employees.map(item => (
             <div key={item.id} className='barcodeContainer'>
               <span>{item.name}</span>
-              <BarcodeComponent value={String(item.id)}/>
+              <BarcodeComponent value={String(item.id)} fontSize={12} margin={2}/>
             </div>
           ))
         }

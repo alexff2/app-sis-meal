@@ -1,3 +1,11 @@
+.printEmployee {
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  height: 48px;
+  right: 16px;
+}
+
 .barcode {
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +24,7 @@
 }
 
 .barcodeContainer span {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
   text-align: center;
 }
