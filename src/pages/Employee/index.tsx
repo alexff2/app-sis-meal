@@ -3,7 +3,7 @@ import { CircleButton, TableSearch, Select } from '../../components'
 import { ModalRegisterEmployee } from './Component'
 import { api } from '../../services'
 
-type EmployeePropsSate = {
+export type EmployeePropsSate = {
   id: number
   name: string
   departmentId: number

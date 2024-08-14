@@ -1,3 +1,4 @@
+import { LuMenuSquare } from 'react-icons/lu'
 import { useAuthenticate } from '../../hooks'
 
 import './style.css'
@@ -17,7 +18,11 @@ export function Header(){
 
   return(
     <header className='headerContainer'>
-      {userAuthenticate?.app === 'register' && <div className='menuBtn' onClick={handleOpenMenu}>Menu</div>}
+      {userAuthenticate?.app === 'register' && 
+        <div className='menuBtn' onClick={handleOpenMenu}>
+          <LuMenuSquare size={20}/>
+        </div>
+      }
       <h1>SisMeal</h1>
 
       <div className="user">

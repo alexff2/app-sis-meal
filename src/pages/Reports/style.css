@@ -1,0 +1,38 @@
+.containerPages.reportContainer {
+  padding: 32px;  
+  width: 100%;
+}
+
+.containerPages.reportContainer h2 {
+  width: 100%;
+  background-color: #FFFFFF55;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  margin-bottom: 32px;
+  padding: 8px;
+  text-align: center;
+}
+.containerPages.reportContainer .linkReports {
+  display: flex;
+  flex-wrap: wrap;
+}
+.containerPages.reportContainer .linkReports a {
+  display: block;
+  text-decoration: none;
+  background-color: rgba(59, 37, 11, 0.6);
+  padding: 8px;
+  border-radius: 8px;
+  color: white;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+.containerPages.reportContainer .linkReports a:hover {
+  background-color: rgba(59, 37, 11, 0.8);
+}
+
+@media print {
+  .menuFixo, .headerContainer, .looseMenuId, .headerPrint {
+    display: none;
+  }
+}

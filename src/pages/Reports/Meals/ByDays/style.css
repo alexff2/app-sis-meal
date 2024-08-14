@@ -1,0 +1,148 @@
+.reportMealsByDay {
+  font-size: 10px;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  margin: 12px auto;
+  height: fit-content;
+}
+
+.headerFilterMealsByDay {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 16px;
+  background-color: #FFFFFF55;
+  backdrop-filter: blur(8px);
+  margin-bottom: 16px;
+}
+
+.headerFilterMealsByDay .selectContainer {
+  padding: 8px 12px;
+  backdrop-filter: blur(6px);
+  opacity: 0.7;
+}
+
+.headerFilterMealsByDay .selectContainer:hover {
+  opacity: 1;
+}
+
+.headerFilterMealsByDay .selectContainer select{
+  padding: 0;
+}
+
+.headerFilterMealsByDay .selectContainer .iconArrowSelect {
+  display: none;
+}
+
+.headerFilterMealsByDay button {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  display: block;
+  width: fit-content;
+  opacity: 0.7;
+}
+
+.headerFilterMealsByDay button:hover {
+  opacity: 1;
+}
+
+.reportMealsByDay h2, .reportMealsByDay h3 {
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  background-color: rgba(95, 158, 160, 0.5);
+  backdrop-filter: blur(4px);
+  color: #FFF;
+}
+
+.reportMealsByDay h3 {
+  background-color: rgba(58, 48, 143, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.reportMealsByDay table {
+  font-size: 8px;
+  border-collapse: collapse;
+}
+
+.reportMealsByDay th, .reportMealsByDay td {
+  text-align: center;
+  border: 2px solid #aa6f48ac;
+  color: #FFF;
+  padding: 1px;
+}
+
+.reportMealsByDay th {
+  background-color: #d88202ac;
+}
+
+.reportMealsByDay td {
+  background-color: #aa6f48ac;
+  backdrop-filter: blur(4px);
+}
+
+.totMonthMealsDay {
+  padding: 12px 0;
+  font-weight: 700;
+}
+
+@media(min-width: 600px) {
+  .reportMealsByDay * {
+    font-size: 13px;
+  }
+
+  .reportMealsByDay {
+    width: 100%;
+    margin: 20px;
+  }
+
+  .headerFilterMealsByDay {
+    margin-bottom: 24px;
+  }
+}
+
+@media(min-width: 1200px) {
+  .reportMealsByDay *, .headerFilterMealsByDay button {
+    font-size: 16px;
+  }
+
+  .reportMealsByDay {
+    width: 100%;
+    margin: 20px;
+  }
+
+  .reportMealsByDay th, .reportMealsByDay td {
+    padding: 4px;
+  }
+}
+
+@media print {
+  .headerPrint.headerFilterMealsByDay {
+    display: none;
+  }
+  .reportMealsByDay * {
+    font-size: 14px;
+  }
+  .reportMealsByDay {
+    width: 100%;
+  }
+  .reportMealsByDay h2 {
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    color: #000;
+  }
+  .reportMealsByDay h3 {
+    border: 1px solid #000;
+    color: #000;
+  }
+  .reportMealsByDay th, .reportMealsByDay td {
+    border: 1px solid #000;
+    color: #000;
+    padding: 4px 2px;
+    backdrop-filter: initial;
+  }
+}
